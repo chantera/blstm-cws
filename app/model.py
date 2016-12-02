@@ -145,7 +145,7 @@ class BLSTMBase(SequentialBase):
         xs_f = []
         xs_b = []
         for x in xs:
-            _x = self.embed(x)
+            _x = self.embed(self.xp.array(x))
             xs_f.append(_x)
             xs_b.append(_x[::-1])
         hs_f = self.f_lstm(xs_f)
