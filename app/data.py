@@ -18,6 +18,9 @@ class CorpusReader:
         Y_raw = []
         with open(path) as f:
             for line in f:
+                line = line.strip()
+                if not line:
+                    continue
                 chars, labels = self._parse_line(line)
                 X_raw.append(chars)
                 Y_raw.append(labels)
@@ -26,7 +29,7 @@ class CorpusReader:
 
     @classmethod
     def _parse_line(cls, line):
-        segments = line.strip().split(cls.DELIMITER)
+        segments = line.split(cls.DELIMITER)
         chars = []
         labels = []
         for segment in segments:

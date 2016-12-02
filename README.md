@@ -1,6 +1,6 @@
 # blstm-cws : Bi-directional LSTM for Chinese Word Segmentation
 
-blstm-cws is preliminary implementation for Chinese Word Segmentation
+blstm-cws is preliminary implementation for Chinese Word Segmentation.
 
 ## Installation
 
