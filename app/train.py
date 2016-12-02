@@ -109,7 +109,7 @@ class App(AbstractApp):
 
     def _initialize(self):
         self._logdir = self._basedir + '/../logs'
-        self._def_arg('--batchsize', '-b', type=int, default=70,
+        self._def_arg('--batchsize', '-b', type=int, default=20,
                       help='Number of examples in each mini-batch')
         self._def_arg('--epoch', '-e', type=int, default=20,
                       help='Number of sweeps over the dataset to train')
@@ -130,7 +130,7 @@ class App(AbstractApp):
             n_epoch=self._args.epoch,
             batch_size=self._args.batchsize,
             gpu=self._args.gpu,
-            save=self._basedir + "/output/cws.model" if self._args.save else None
+            save=self._basedir + "/../output/cws.model" if self._args.save else None
         )
         Log.i("*** [DONE] ***")
 
