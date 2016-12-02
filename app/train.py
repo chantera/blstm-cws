@@ -74,14 +74,14 @@ def train(
         loss.backward()
         optimizer.update()
 
-    def _process(dataset, train=True):
+    def _process(dataset, model):
         size = len(dataset)
         batch_count = 0
         loss = 0.0
         accuracy = 0.0
 
         p = ProgressBar(min_value=0, max_value=size, fd=sys.stderr).start()
-        for i, (xs, ys) in enumerate(dataset.batch(batch_size, colwise=True, shuffle=train)):
+        for i, (xs, ys) in enumerate(dataset.batch(batch_size, colwise=True, shuffle=model.train)):
             p.update((batch_size * i) + 1)
             batch_count += 1
             batch_loss, batch_accuracy = model(xs, ys)
@@ -96,8 +96,8 @@ def train(
                  loss / batch_count, accuracy / batch_count))
 
     for epoch in range(n_epoch):
-        _process(train_dataset)
-        _process(test_dataset, train=False)
+        _process(train_dataset, model)
+        _process(test_dataset, eval_model)
         Log.v('-')
 
     if save is not None:
