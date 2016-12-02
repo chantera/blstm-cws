@@ -119,7 +119,7 @@ class App(AbstractApp):
                       help='Save the NN model')
 
     def main(self):
-        corpus = "msr"
+        corpus = "pku"
         datadir = self._basedir + '/../data'
 
         Log.i("*** [START] ***")
