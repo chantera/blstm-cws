@@ -92,7 +92,7 @@ def train(
 
         p.finish()
         Log.i("[%s] epoch %d - #samples: %d, loss: %f, accuracy: %f"
-              % ('training' if train else 'evaluation', epoch + 1, size,
+              % ('training' if model.train else 'evaluation', epoch + 1, size,
                  loss / batch_count, accuracy / batch_count))
 
     for epoch in range(n_epoch):

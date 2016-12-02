@@ -148,8 +148,8 @@ class BLSTMBase(SequentialBase):
             _x = self.embed(self.xp.array(x))
             xs_f.append(_x)
             xs_b.append(_x[::-1])
-        hs_f = self.f_lstm(xs_f)
-        hs_b = self.b_lstm(xs_b)
+        hs_f = self.f_lstm(xs_f, self.train)
+        hs_b = self.b_lstm(xs_b, self.train)
         ys = [self.linear(F.dropout(F.concat([h_f, h_b[::-1]]), ratio=self._dropout, train=self.train)) for h_f, h_b in zip(hs_f, hs_b)]
         return ys
 
