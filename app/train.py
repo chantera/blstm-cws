@@ -34,12 +34,19 @@ def train(
     Log.i('load test dataset from %s' % str(test_file))
     test_dataset = reader.load(test_file, train=False)
 
+    hparams = {
+        'dropout_ratio': 0.2,
+        'adagrad_lr': 0.2,
+        'weight_decay': 0.0001,
+    }
+
     Log.v('')
     Log.v("initialize ...")
     Log.v('--------------------------------')
     Log.i('# Minibatch-size: %d' % batch_size)
     Log.i('# epoch: %d' % n_epoch)
     Log.i('# gpu: %d' % gpu)
+    Log.i('# hyper-parameters: %s' % str(hparams))
     Log.v('--------------------------------')
     Log.v('')
 
@@ -48,7 +55,7 @@ def train(
     model = cls(
         embeddings=processor.embeddings,
         n_labels=4,
-        dropout=0.2,
+        dropout=hparams['dropout_ratio'],
         train=True,
     )
     if gpu >= 0:
@@ -58,9 +65,9 @@ def train(
     eval_model.train = False
 
     # Setup an optimizer
-    optimizer = optimizers.AdaGrad(lr=0.2)
+    optimizer = optimizers.AdaGrad(lr=hparams['adagrad_lr'])
     optimizer.setup(model)
-    optimizer.add_hook(WeightDecay(0.0001))
+    optimizer.add_hook(WeightDecay(hparams['weight_decay']))
 
     def _update(optimizer, loss):
         optimizer.target.zerograds()
