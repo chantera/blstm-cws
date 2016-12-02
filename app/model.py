@@ -172,6 +172,13 @@ class BLSTM(BLSTMBase):
         accuracy = self._accuracy(ys, ts)
         return loss, accuracy
 
+    def parse(self, xs):
+        hs = super(BLSTM, self).__call__(xs)
+        ys = []
+        for h in hs:
+            ys.append(np.argmax(cuda.to_cpu(h.data), axis=1))
+        return ys
+
 
 class BLSTMCRF(BLSTMBase):
 
@@ -188,3 +195,9 @@ class BLSTMCRF(BLSTMBase):
 
         accuracy = self._accuracy(ys, ts)
         return loss, accuracy
+
+    def parse(self, xs):
+        hs = super(BLSTMCRF, self).__call__(xs)
+        _, ys = self.crf.argmax(hs)
+        ys = [y.data for y in ys]
+        return ys
