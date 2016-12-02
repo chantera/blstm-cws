@@ -31,7 +31,9 @@ class CorpusReader:
         labels = []
         for segment in segments:
             s_len = len(segment)
-            if s_len == 1:
+            if s_len == 0:
+                continue
+            elif s_len == 1:
                 labels.append('S')
             else:
                 labels.append('B')
@@ -39,6 +41,7 @@ class CorpusReader:
                     labels.append('M')
                 labels.append('E')
             [chars.append(char) for char in segment]
+        assert len(chars) == len(labels)
         return chars, labels
 
     def _transform(self, X_chars, Y_labels, train=True):
