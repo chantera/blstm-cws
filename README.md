@@ -39,7 +39,8 @@ optional arguments:
 
 ## Performance
 
-More details coming soon.
+A brief report is available here <http://qiita.com/chantera/items/d8104012c80e3ea96df7> . (Written in Japanese)
+
 
 ## References
 
