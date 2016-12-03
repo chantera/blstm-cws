@@ -87,7 +87,7 @@ def train(
             batch_loss, batch_accuracy = model(xs, ys)
             loss += batch_loss.data
             accuracy += batch_accuracy
-            if train:
+            if model.train:
                 _update(optimizer, batch_loss)
 
         p.finish()
