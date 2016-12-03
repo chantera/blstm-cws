@@ -125,7 +125,7 @@ class App(AbstractApp):
         Log.i("*** [START] ***")
         train(
             train_file=datadir + "/icwb2-data/training/%s_training.utf8" % corpus,
-            test_file=datadir + "/icwb2-data/testing/%s_test.utf8" % corpus,
+            test_file=datadir + "/icwb2-data/gold/%s_test_gold.utf8" % corpus,
             embed_file=datadir + "/zhwiki-embeddings-100.txt",
             n_epoch=self._args.epoch,
             batch_size=self._args.batchsize,
