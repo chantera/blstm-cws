@@ -61,7 +61,7 @@ class LSTM(L.NStepLSTM):
                 volatile='auto')
 
         hy, cy, ys = super(LSTM, self).__call__(self.hx, self.cx, xs, train)
-        self.hx, self.cy = hy, cy
+        self.hx, self.cx = hy, cy
         return ys
 
 
