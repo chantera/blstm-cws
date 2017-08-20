@@ -4,7 +4,7 @@ blstm-cws is preliminary implementation for Chinese Word Segmentation.
 
 ## Installation
 
-blstm-cws works on Python3 and requires chainer, gensim, numpy and progressbar2.
+blstm-cws works on Python3 and requires chainer(v1.18.0), gensim, numpy and progressbar2.
 
 ```sh
 $ git clone https://github.com/chantera/blstm-cws
